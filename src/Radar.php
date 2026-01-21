@@ -22,7 +22,7 @@ class Radar extends Diagram
     private ?Graticule $graticule = null;
     private ?int $max = null;
     private ?int $min = null;
-    private ?bool $showLegend = null;
+    private bool $showLegend = false;
     private ?int $ticks = null;
 
     public function addAxis(Axis ...$axis): self
@@ -39,10 +39,10 @@ class Radar extends Diagram
         return $new;
     }
 
-    public function showLegend(bool $showLegend): self
+    public function showLegend(): self
     {
         $new = clone $this;
-        $new->showLegend = $showLegend;
+        $new->showLegend = true;
         return $new;
     }
 

@@ -34,10 +34,10 @@ Radar
         :returns: A Mermaid chart or diagram code in a <pre> tag
         :rtype: string
     
-    .. php:method:: showLegend(bool $showLegend)
+    .. php:method:: showLegend()
 
         :param bool $showLegend:
-        :returns: An instance of Radar with
+        :returns: An instance of Radar that will show a legend
         :rtype: Radar
     
     .. php:method:: withAxis(Axis ...$axis)
