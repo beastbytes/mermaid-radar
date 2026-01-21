@@ -56,6 +56,7 @@ final class Curve
         return $new;
     }
 
+    /** @internal */
     public function render(string $indentation): string
     {
         return sprintf(
