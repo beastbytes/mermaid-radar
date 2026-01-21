@@ -7,9 +7,12 @@ namespace BeastBytes\Mermaid\Radar;
 use BeastBytes\Mermaid\Diagram;
 use BeastBytes\Mermaid\Mermaid;
 use BeastBytes\Mermaid\TitleTrait;
+use Override;
+use RuntimeException;
 
 class Radar extends Diagram
 {
+    private const string EXCEPTION = 'Invalid number of values for Curve %s (%s): %d values for %d axes';
     private const string TYPE = 'radar-beta';
 
     /** @var Axis[] $axes */
@@ -29,13 +32,6 @@ class Radar extends Diagram
         return $new;
     }
 
-    public function withAxis(Axis ...$axis): self
-    {
-        $new = clone $this;
-        $new->axes = $axis;
-        return $new;
-    }
-
     public function addCurve(Curve ...$curve): self
     {
         $new = clone $this;
@@ -43,17 +39,24 @@ class Radar extends Diagram
         return $new;
     }
 
-    public function withCurve(Curve ...$curve): self
-    {
-        $new = clone $this;
-        $new->curves = $curve;
-        return $new;
-    }
-
     public function showLegend(bool $showLegend): self
     {
         $new = clone $this;
         $new->showLegend = $showLegend;
+        return $new;
+    }
+
+    public function withAxis(Axis ...$axis): self
+    {
+        $new = clone $this;
+        $new->axes = $axis;
+        return $new;
+    }
+
+    public function withCurve(Curve ...$curve): self
+    {
+        $new = clone $this;
+        $new->curves = $curve;
         return $new;
     }
 
@@ -85,6 +88,7 @@ class Radar extends Diagram
         return $new;
     }
 
+    #[Override]
     public function renderDiagram(): string
     {
         $output = [self::TYPE];
@@ -93,7 +97,18 @@ class Radar extends Diagram
             $output[] = $axis->render(MERMAID::INDENTATION);
         }
 
+        $numberOfAxes = count($this->axes);
         foreach ($this->curves as $curve) {
+            if ($curve->countValues() !== $numberOfAxes) {
+                throw new RuntimeException(sprintf(
+                    self::EXCEPTION,
+                    $curve->getId(),
+                    $curve->getLabel(),
+                    $curve->countValues(),
+                    $numberOfAxes
+                ));
+            }
+
             $output[] = $curve->render(MERMAID::INDENTATION);
         }
 

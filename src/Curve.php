@@ -33,6 +33,18 @@ final class Curve
         return $new;
     }
 
+    /** @internal */
+    public function countValues(): int
+    {
+        return count($this->values);
+    }
+
+    /** @internal */
+    public function getLabel(): string
+    {
+        return (string) $this->label;
+    }
+
     /**
      * @param array<string, float|int>|list<float|int> $values
      * @return $this
