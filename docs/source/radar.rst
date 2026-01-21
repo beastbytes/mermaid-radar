@@ -36,7 +36,6 @@ Radar
     
     .. php:method:: showLegend()
 
-        :param bool $showLegend:
         :returns: An instance of Radar that will show a legend
         :rtype: Radar
     
