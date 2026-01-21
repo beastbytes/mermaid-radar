@@ -5,7 +5,7 @@ Mermaid Radar Chart API documentation
 
 .. toctree::
    :maxdepth: 2
-   :caption: API Contents:
+   :caption: API Contents
 
    axis
    curve
