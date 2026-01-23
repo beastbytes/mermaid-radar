@@ -43,7 +43,7 @@ PHP
 Generated Mermaid
 +++++++++++++++++
 
-::
+.. code-block:: html
 
     <pre class="mermaid">
     ---
