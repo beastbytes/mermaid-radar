@@ -22,16 +22,16 @@ Radar
         :param Curve ...$curve:
         :returns: An instance of Radar with curves added
         :rtype: Radar
-    
+
     .. php:method:: render(array $attributes = [])
-    
-        Renders a Mermaid chart or diagram
-    
+
+        Renders the diagram
+
         :param array $attributes: HTML attributes for the <pre> tag as name=>value pairs
 
-        .. note:: The `mermaid` class is added
+            .. note:: The *mermaid* class is added
 
-        :returns: A Mermaid chart or diagram code in a <pre> tag
+        :returns: Mermaid diagram code in a <pre> tag
         :rtype: string
     
     .. php:method:: showLegend()
